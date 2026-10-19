@@ -1,0 +1,72 @@
+Python 3.14.8 (tags/v3.14.8:8e6e75d, Sep 30 2026, 18:19:33) [MSC v.1944 64 bit (AMD64)] on win32
+Enter "help" below or click "Help" above for more information.
+# --- 1. COLLECT CUSTOMER & ITEM INFORMATION ---
+print("--- Welcome to the Smart Shopping Cart ---")
+customer_name = input("Enter customer name: ")
+is_member = input("Are you a loyalty member? (yes/no): ").strip().lower() == "yes"
+
+print("\n--- Enter 3 Items ---")
+# Item 1
+item1_name = input("Item 1 name: ")
+item1_price = float(input("Item 1 price ($): "))
+item1_qty = int(input("Item 1 quantity: "))
+
+# Item 2
+item2_name = input("Item 2 name: ")
+item2_price = float(input("Item 2 price ($): "))
+item2_qty = int(input("Item 2 quantity: "))
+
+# Item 3
+item3_name = input("Item 3 name: ")
+item3_price = float(input("Item 3 price ($): "))
+item3_qty = int(input("Item 3 quantity: "))
+
+
+# --- 2. CALCULATE SUBTOTALS ---
+total1 = item1_price * item1_qty
+total2 = item2_price * item2_qty
+total3 = item3_price * item3_qty
+
+subtotal = total1 + total2 + total3
+
+
+... # --- 3. DISCOUNT & SHIPPING LOGIC ---
+... # Boolean logic for discounts
+... is_large_order = subtotal > 50  # 10% off if subtotal is over $50
+... apply_discount = is_member or is_large_order
+... 
+... discount_amount = 0.0
+... if apply_discount:
+...     discount_amount = subtotal * 0.10  # 10% discount
+... 
+... discounted_subtotal = subtotal - discount_amount
+... 
+... # Shipping logic: Free shipping if member or subtotal > 100, otherwise $10
+... free_shipping = is_member or (subtotal > 100)
+... shipping_cost = 0.0 if free_shipping else 10.0
+... 
+... # Tax logic: 5% tax rate
+... tax_rate = 0.05
+... tax_amount = discounted_subtotal * tax_rate
+... 
+... # Final Total
+... final_total = discounted_subtotal + tax_amount + shipping_cost
+... 
+... 
+... # --- 4. DISPLAY ITEMIZED RECEIPT ---
+... print("\n" + "="*40)
+... print(f"RECEIPT FOR: {customer_name.upper()}")
+... print(f"Loyalty Member: {'Yes' if is_member else 'No'}")
+... print("="*40)
+... print(f"{'Item':<15} {'Qty':<5} {'Price':<8} {'Total':<8}")
+... print("-" * 40)
+... print(f"{item1_name:<15} {item1_qty:<5} ${item1_price:<7.2f} ${total1:<7.2f}")
+... print(f"{item2_name:<15} {item2_qty:<5} ${item2_price:<7.2f} ${total2:<7.2f}")
+... print(f"{item3_name:<15} {item3_qty:<5} ${item3_price:<7.2f} ${total3:<7.2f}")
+... print("-" * 40)
+... print(f"{'Subtotal:':<25} ${subtotal:>10.2f}")
+... print(f"{'Discount Applied:':<25} -${discount_amount:>9.2f}")
+... print(f"{'Tax (5%):':<25} ${tax_amount:>10.2f}")
+... print(f"{'Shipping:':<25} ${shipping_cost:>10.2f}")
+... print("="*40)
+... print(f"{'FINAL TOTAL:':<25} ${final_total:>10.2f}")
